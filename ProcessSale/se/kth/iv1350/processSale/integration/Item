@@ -1,0 +1,8 @@
+public class Item {
+
+    public Item(String identifier, int quantity, int something){
+        this.identifier = identifier;
+        this.quantity = quantity;
+        this.something = something;
+    }
+}
