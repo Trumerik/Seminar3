@@ -13,8 +13,7 @@ public class View {
 
     private void systemCalls() {
         controller.startSale();
-        String identifier = "whoho";
-        int quantity = 2;
+        String identifier = "mjöl";
         CurrentSaleStatusDTO currentSaleStatus = controller.entersItemIdentifier(identifier);
         float runningTotal = controller.endSale();
         float amount = 1000f;

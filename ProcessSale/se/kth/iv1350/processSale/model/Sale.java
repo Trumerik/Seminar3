@@ -7,7 +7,6 @@ import se.kth.iv1350.processSale.integration.ExternalInventorySystem;
 import java.util.HashMap;
 
 public class Sale {
-    private float runningTotal;
     private LocalDateTime timeOfSale;
     private Receipt receipt;
     private HashMap<String, ItemDescriptionDTO> seenItemsCache; // if we want to use cache
@@ -25,40 +24,33 @@ public class Sale {
     }
     
     public CurrentSaleStatusDTO requestSaleInformation(String identifier) {
-        ItemDescriptionDTO itemDescription = retrieveIfItemSeenBefore(identifier);
+        ItemDescriptionDTO itemDescription = retrieveFromCacheIfItemSeenBefore(identifier);
         if (itemDescription == null) {
             itemDescription = inventorySystem.getItemDescription(identifier);
+            addItemToCache(identifier, itemDescription);
         }
-        increaseRunningTotal(itemDescription.getPrice());
         receipt.addItemToReceipt(itemDescription);
-        CurrentSaleStatusDTO currentSaleStatus = new CurrentSaleStatusDTO(itemDescription, runningTotal);
+        CurrentSaleStatusDTO currentSaleStatus = new CurrentSaleStatusDTO(itemDescription, receipt.getRunningTotal());
         return currentSaleStatus;
     }
 
-    private ItemDescriptionDTO retrieveIfItemSeenBefore(String identifier) {
+    private ItemDescriptionDTO retrieveFromCacheIfItemSeenBefore(String identifier) {
         if (seenItemsCache.containsKey(identifier)) {
             return seenItemsCache.get(identifier);
         }
         return null;
     }
-
-    private void increaseRunningTotal(float price) {
-        this.runningTotal += price;
+    
+    private void addItemToCache(String indentifier, ItemDescriptionDTO itemDescription) {
+        seenItemsCache.put(indentifier, itemDescription);
     }
 
-    public float getRunningTotal() {
-        return runningTotal;
+
+    public void updateReciept(float payment) {
+        receipt.updateReceipt(payment);
     }
 
-    public float calculateChange(float payment) {
-        float change = payment - runningTotal;
-        receipt.updateReceipt(payment, change);
-        return change;
-    }
-
-    public Receipt getReceipt(float payment) {
-        float change = payment - runningTotal;
-        receipt.updateReceipt(payment, change);
+    public Receipt getReceipt() {
         return this.receipt;
     }
 }
