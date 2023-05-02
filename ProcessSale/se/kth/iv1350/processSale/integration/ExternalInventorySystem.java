@@ -10,11 +10,11 @@ public class ExternalInventorySystem {
     private ArrayList<Pair<ItemDescriptionDTO, Integer>> mockDatabase;
 
     public ExternalInventorySystem(){
-        ItemDescriptionDTO itemDescriptionDTO1 = new ItemDescriptionDTO(30, "apple", 12); 
-        ItemDescriptionDTO itemDescriptionDTO2 = new ItemDescriptionDTO(50, "mjöl", 15);
-        ItemDescriptionDTO itemDescriptionDTO3 = new ItemDescriptionDTO(40, "honung", 70);
-        ItemDescriptionDTO itemDescriptionDTO4 = new ItemDescriptionDTO(5, "mandariner", 36);
-        ItemDescriptionDTO itemDescriptionDTO5 = new ItemDescriptionDTO(25, "ananas", 57);
+        ItemDescriptionDTO itemDescriptionDTO1 = new ItemDescriptionDTO(30, "apple", 0.25f); 
+        ItemDescriptionDTO itemDescriptionDTO2 = new ItemDescriptionDTO(50, "mjöl", 0.12f);
+        ItemDescriptionDTO itemDescriptionDTO3 = new ItemDescriptionDTO(40, "honung", 0.06f);
+        ItemDescriptionDTO itemDescriptionDTO4 = new ItemDescriptionDTO(5, "mandariner", 0.25f);
+        ItemDescriptionDTO itemDescriptionDTO5 = new ItemDescriptionDTO(25, "ananas", 0.12f);
         mockDatabase.add(new Pair<ItemDescriptionDTO, Integer>(itemDescriptionDTO1, 40));
         mockDatabase.add(new Pair<ItemDescriptionDTO, Integer>(itemDescriptionDTO2, 25));
         mockDatabase.add(new Pair<ItemDescriptionDTO, Integer>(itemDescriptionDTO3, 134));

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Receipt {
     private LocalDateTime timeOfSale;
-    private int vatRate;
-    private ArrayList<Integer> quantities; // {5, "apples"}, {2, "milk"} eller: {1,2,5,6}
-    private ArrayList<String> items;                                  //        {"apples, "milk", "flour"}
+    private float vat;
+    private ArrayList<Integer> quantities;
+    private ArrayList<String> items;
     private float totalPrice;
     private float amountPaid;
     private float change;
@@ -20,20 +20,19 @@ public class Receipt {
         for(int i = 0; i <= quantities.size(); i++){
             if (items.get(i) == itemDescription.getName()){
                 quantities.set(i, quantities.get(i) + 1);
-                increaseRunningTotal(itemDescription.getPrice());
+                updateRunningTotalAndVat(itemDescription.getPrice(), itemDescription.getVatRate());
                 return;
             }
         }
         items.add(itemDescription.getName());
         quantities.add(1);
-        increaseRunningTotal(itemDescription.getPrice());
+        updateRunningTotalAndVat(itemDescription.getPrice(), itemDescription.getVatRate());
     }
 
-    private void increaseRunningTotal(float price) {
-        this.totalPrice += price;
+    private void updateRunningTotalAndVat(float price, float vatRate) {
+        this.totalPrice += price * (1 + vatRate);
+        this.vat += price * vatRate;
     }
-
-    
 
     public void updateReceipt(float payment){
         float change = payment - totalPrice;

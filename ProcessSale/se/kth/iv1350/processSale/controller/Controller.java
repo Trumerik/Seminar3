@@ -29,7 +29,7 @@ public class Controller {
     }
 
     /**
-     * Starts a new sale by creating a new instance of the Sale class.
+     * Starts a new sale by creating a new instance of the {@link Sale} class.
      * The sale object is initilized with the inventorySystem.
      */
     public void startSale() {
