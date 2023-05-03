@@ -66,7 +66,7 @@ public class Controller {
      * @return The change.
      */
     public float enterPayment(float amount) {
-        sale.updateReciept(amount);
+        sale.updateReceipt(amount);
         Receipt receipt = sale.getReceipt();
         this.inventorySystem.updateInventorySystem(receipt);
         this.accountingSystem.sendSaleInformation(receipt);

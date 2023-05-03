@@ -16,6 +16,6 @@ public class Main {
     public static void main(String[] args) {
         ReceiptPrinter printer = new ReceiptPrinter();
         Controller controller = new Controller(printer);
-        View view = new View(controller);
+        new View(controller);
     }
 }

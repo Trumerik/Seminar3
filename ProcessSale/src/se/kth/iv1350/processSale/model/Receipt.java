@@ -25,6 +25,10 @@ public class Receipt {
         this.timeOfSale = timeOfSale;
         this.quantities = new ArrayList<Integer>();
         this.items = new ArrayList<String>();
+        vat = 0;
+        totalPrice = 0;
+        amountPaid = 0;
+        change = 0;
     }
     
     /**
@@ -65,7 +69,7 @@ public class Receipt {
      * 
      * @param payment the payment of the sale
      */
-    public void updateReceipt(float payment){
+    public void updatePayment(float payment){
         this.amountPaid = payment;
         float change = payment - totalPrice;
         this.change = change;

@@ -3,7 +3,7 @@ package se.kth.iv1350.processSale.integration;
 import se.kth.iv1350.processSale.model.Receipt;
 
 /**
- * The external printer machine that will simply print the reciept.
+ * The external printer machine that will simply print the receipt.
  */
 public class ReceiptPrinter {
 
