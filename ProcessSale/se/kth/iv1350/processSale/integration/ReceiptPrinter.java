@@ -14,19 +14,19 @@ public class ReceiptPrinter {
 
     /**
      * Prints the receipt. But since external systems are not modeled in
-     * this seminar it is excluded.
+     * this seminar it is excluded. Here is an example of how the receipt can be printed.
      * 
      * @param receipt The {@link Receipt} to be printed.
      */
     public void printReceipt(Receipt receipt) {
         System.out.println("====RECEIPT======");
-        System.out.println(receipt.getAmountPaid());
-        System.out.println(receipt.getChange());
-        System.out.println(receipt.getRunningTotal());
-        System.out.println(receipt.getVat());
-        System.out.println(receipt.getItems());
-        System.out.println(receipt.getQuantities());
-        System.out.println(receipt.getTimeOfSale());
+        System.out.println("Paid amount: " + receipt.getAmountPaid());
+        System.out.println("Change: " + receipt.getChange());
+        System.out.println("Total: " + receipt.getRunningTotal());
+        System.out.println("VAT: " + receipt.getVat());
+        System.out.println("Items: " + receipt.getItems());
+        System.out.println("Quantaties: " + receipt.getQuantities());
+        System.out.println("Date & Time: " + receipt.getTimeOfSale());
         System.out.println("====END OF RECEIPT======");
     }
 }

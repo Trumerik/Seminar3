@@ -17,6 +17,7 @@ public class ExternalInventorySystem {
      * descriptions to a mock database, along with its quantity in inventory.
      */
     public ExternalInventorySystem(){
+        this.mockDatabase = new ArrayList<Pair<ItemDescriptionDTO, Integer>>();
         ItemDescriptionDTO itemDescriptionDTO1 = new ItemDescriptionDTO(30, "apple", 0.25f); 
         ItemDescriptionDTO itemDescriptionDTO2 = new ItemDescriptionDTO(50, "mjöl", 0.12f);
         ItemDescriptionDTO itemDescriptionDTO3 = new ItemDescriptionDTO(40, "honung", 0.06f);

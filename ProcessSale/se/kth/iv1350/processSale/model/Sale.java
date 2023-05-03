@@ -25,6 +25,7 @@ public class Sale {
         setTimeOfSale();
         this.receipt = new Receipt(this.timeOfSale);
         this.inventorySystem = inventorySystem;
+        seenItemsCache = new HashMap<String, ItemDescriptionDTO>();
     }
 
     /**

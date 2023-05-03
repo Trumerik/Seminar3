@@ -32,6 +32,12 @@ public class View {
         String identifier = "mjöl";
         CurrentSaleStatusDTO currentSaleStatus = controller.entersItemIdentifier(identifier);
         prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+        identifier = "mandariner";
+        CurrentSaleStatusDTO currentSaleStatus1 = controller.entersItemIdentifier(identifier);
+        prettyPrinter.printCurrentSaleInformation(currentSaleStatus1);
+        identifier = "mjöl";
+        CurrentSaleStatusDTO currentSaleStatus3 = controller.entersItemIdentifier(identifier);
+        prettyPrinter.printCurrentSaleInformation(currentSaleStatus3);
         float totalPrice = controller.endSale();
         System.out.println("Total price: " + totalPrice);
         float payment = 1000f;

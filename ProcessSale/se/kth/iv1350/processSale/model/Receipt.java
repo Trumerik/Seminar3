@@ -23,6 +23,8 @@ public class Receipt {
      */
     public Receipt(LocalDateTime timeOfSale){
         this.timeOfSale = timeOfSale;
+        this.quantities = new ArrayList<Integer>();
+        this.items = new ArrayList<String>();
     }
     
     /**
@@ -34,7 +36,7 @@ public class Receipt {
      */
 
     public void addItemToReceipt(ItemDescriptionDTO itemDescription){
-        for(int i = 0; i <= quantities.size(); i++){
+        for(int i = 0; i < quantities.size(); i++){
             if (items.get(i) == itemDescription.getName()){
                 quantities.set(i, quantities.get(i) + 1);
                 updateRunningTotalAndVat(itemDescription.getPrice(), itemDescription.getVatRate());
@@ -81,27 +83,37 @@ public class Receipt {
     public float getRunningTotal(){
         return this.totalPrice;
     }
-
-
-
-
-
+    /**
+    * @return the time of sale of the current {@link Receipt}
+    */
     public LocalDateTime getTimeOfSale(){
         return this.timeOfSale;
     }
-
+    
+    /**
+    * @return the quantities of purchased items in of the current {@link Receipt}
+    */
     public ArrayList<Integer> getQuantities(){
         return this.quantities;
     }
 
+    /**
+     * @return the items of the current {@link Receipt}
+     */
     public ArrayList<String> getItems(){
         return this.items;
     }
 
+    /**
+     * @return the total price of the current {@link Receipt}
+     */
     public float getVat(){
         return this.vat;
     }
 
+    /**
+     * @return the amount paid of the current {@link Receipt}
+     */
     public float getAmountPaid(){
         return this.amountPaid;
     }

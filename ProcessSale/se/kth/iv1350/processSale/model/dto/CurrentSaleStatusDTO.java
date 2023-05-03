@@ -20,11 +20,18 @@ public class CurrentSaleStatusDTO {
     }
 
 
-    //can be removed
+    /**
+     * getter method for the running total
+     * @return the running total
+     */
     public float getRunningTotal(){
         return this.runningTotal;
     }
 
+    /**
+     * getter method for the item description
+     * @return the item description
+     */
     public ItemDescriptionDTO getItemDescription(){
         return this.itemDescription;
     }
