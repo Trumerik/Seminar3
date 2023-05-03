@@ -14,7 +14,7 @@ public class ExternalAccountingSystem {
      * recieves receipt/sale information. But since external systems are not modeled in this
      * exercise we choose to leave it blank.
      * 
-     * @param receipt the receipt to be handled by the accounting system
+     * @param receipt the {@link Receipt} to be handled by the accounting system
      */
     public void sendSaleInformation(Receipt receipt) {
         

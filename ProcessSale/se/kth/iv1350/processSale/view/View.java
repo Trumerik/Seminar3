@@ -2,6 +2,7 @@ package se.kth.iv1350.processSale.view;
 
 import se.kth.iv1350.processSale.controller.Controller;
 import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
+import se.kth.iv1350.processSale.util.PrettyPrinter;
 
 /**
  * View class represents the interface between the cashier and the system.
@@ -10,6 +11,7 @@ import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
  */
 public class View {
     private Controller controller;
+    private PrettyPrinter prettyPrinter = new PrettyPrinter();
 
     /**
      * Constructor for the View class.
@@ -29,9 +31,11 @@ public class View {
         controller.startSale();
         String identifier = "mjöl";
         CurrentSaleStatusDTO currentSaleStatus = controller.entersItemIdentifier(identifier);
-        float runningTotal = controller.endSale();
-        float amount = 1000f;
-        float change = controller.enterPayment(amount);
+        prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+        float totalPrice = controller.endSale();
+        System.out.println("Total price: " + totalPrice);
+        float payment = 1000f;
+        float change = controller.enterPayment(payment);
+        System.out.println("Change: " + change);
     }
-
 }

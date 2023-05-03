@@ -1,12 +1,31 @@
 package se.kth.iv1350.processSale.model.dto;
 
+/**
+ * This class represents the current sale status.
+ */
 public class CurrentSaleStatusDTO {
-
     private ItemDescriptionDTO itemDescription;
-    private float runnintTotal;
+    private float runningTotal;
 
+    /**
+     * Creates a new instance of the current sale status representing the currents sale status. 
+     * Which includes information of the sale in its current state.
+     * 
+     * @param itemDescription The {@link itemDescriptionDTO} class which includes necessary information.
+     * @param runningTotal The running total of the sale.
+     */
     public CurrentSaleStatusDTO(ItemDescriptionDTO itemDescription, float runningTotal) {
         this.itemDescription = itemDescription;
-        this.runnintTotal = runningTotal;
+        this.runningTotal = runningTotal;
+    }
+
+
+    //can be removed
+    public float getRunningTotal(){
+        return this.runningTotal;
+    }
+
+    public ItemDescriptionDTO getItemDescription(){
+        return this.itemDescription;
     }
 }
