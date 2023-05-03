@@ -128,7 +128,7 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar we allow jar as we depend on libraries to run the unitTests.
 *.war
 *.nar
 *.ear
