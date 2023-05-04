@@ -66,8 +66,8 @@ public class Sale {
         return null;
     }
     
-    private void addItemToCache(String indentifier, ItemDescriptionDTO itemDescription) {
-        seenItemsCache.put(indentifier, itemDescription);
+    private void addItemToCache(String identifier, ItemDescriptionDTO itemDescription) {
+        seenItemsCache.put(identifier, itemDescription);
     }
 
     /**

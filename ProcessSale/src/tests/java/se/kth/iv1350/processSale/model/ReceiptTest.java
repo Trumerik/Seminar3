@@ -3,7 +3,6 @@ package se.kth.iv1350.processSale.model;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import java.time.LocalDateTime;
-
 import se.kth.iv1350.processSale.model.dto.ItemDescriptionDTO;
 
 /**
@@ -12,6 +11,7 @@ import se.kth.iv1350.processSale.model.dto.ItemDescriptionDTO;
  */
 public class ReceiptTest {
     Receipt receipt;
+
     /**
      * test on the method updatePayment
      */
@@ -45,6 +45,7 @@ public class ReceiptTest {
      /**
      * Test correct quantity field in Items object from method addItemToReceipt
      */
+
     @Test
     public void testAddItemToReceiptQuantity() {
         assertEquals(this.receipt.getItems().get(0).getQuantity(), 1);

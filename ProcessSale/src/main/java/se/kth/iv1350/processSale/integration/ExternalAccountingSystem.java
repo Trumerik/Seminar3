@@ -1,4 +1,5 @@
 package se.kth.iv1350.processSale.integration;
+
 import se.kth.iv1350.processSale.model.Receipt;
 /**
  * The external accounting system contains accounting information. Calls are only made 

@@ -1,4 +1,5 @@
 package se.kth.iv1350.processSale.model;
+
 import se.kth.iv1350.processSale.model.dto.ItemDescriptionDTO;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

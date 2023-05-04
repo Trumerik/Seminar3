@@ -3,6 +3,7 @@ package se.kth.iv1350.processSale.integration;
 import java.util.ArrayList;
 import se.kth.iv1350.processSale.model.Receipt;
 import se.kth.iv1350.processSale.model.dto.ItemDescriptionDTO;
+
 /**
  * The external inventory system contains all item description informations. Calls are only made 
  * to the class from the {@link Controller}
@@ -30,7 +31,6 @@ public class ExternalInventorySystem {
      * @param identifier the identifier of the searched item description
      * @return the specified {@link ItemDescriptionDTO}. If not found, null instead.
      */
-    
     public ItemDescriptionDTO getItemDescription(String identifier){
        for(ItemDescriptionDTO item: mockDatabase) {
             if (identifier == item.getName())
@@ -45,6 +45,5 @@ public class ExternalInventorySystem {
      * 
      * @param receipt the {@link Receipt} to be handled by inventory system
      */
-
     public void updateInventorySystem(Receipt receipt) {}
 }
