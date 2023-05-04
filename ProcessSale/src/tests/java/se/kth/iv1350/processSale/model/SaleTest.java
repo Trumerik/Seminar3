@@ -1,9 +1,7 @@
-package ProcessSale.tests.se.kth.iv1350.processSale.model;
+package se.kth.iv1350.processSale.model;
 
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
-
-import se.kth.iv1350.processSale.model.Sale;
 import se.kth.iv1350.processSale.integration.ExternalInventorySystem;
 import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
 /**
@@ -12,26 +10,42 @@ import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
  */
 public class SaleTest{
     
-     /**
+    private ExternalInventorySystem inventory;
+    private Sale sale;
+
+    @Before
+    public void setUpItemsList(){
+        this.inventory = new ExternalInventorySystem();
+        this.sale = new Sale(inventory);
+        String identifier = "mjöl";
+        sale.requestSaleInformation(identifier);
+    }
+
+    /**
      * test on the method requestSaleInformation
      */
     @Test
-    public void testRequestSaleInformation(){
-        ExternalInventorySystem inventory = new ExternalInventorySystem();
-        Sale sale = new Sale(inventory);
+    public void testRequestSaleInformationIfInCache(){
         String identifier = "mjöl";
         CurrentSaleStatusDTO currentSale = sale.requestSaleInformation(identifier);
         assertEquals(currentSale.getItemDescription().getName(), "mjöl");
     }
+
+    
+    @Test
+    public void testRequestSaleInformationIfItDoesNotExist(){
+        String identifier = "guld";
+        CurrentSaleStatusDTO currentSale = sale.requestSaleInformation(identifier);
+        assertEquals(currentSale.getItemDescription().getName(), null);
+    }
+
     /**
      * test on the method updateReceipt
      */
     @Test
     public void testUpdateReceipt(){
-        ExternalInventorySystem inventory = new ExternalInventorySystem();
-        Sale sale = new Sale(inventory);
         float payment = 100f;
-        sale.updateReceipt(payment);
+        sale.updateReceiptWithPayment(payment);
         assertEquals(sale.getReceipt().getAmountPaid(), 100f, 0);
     }
 

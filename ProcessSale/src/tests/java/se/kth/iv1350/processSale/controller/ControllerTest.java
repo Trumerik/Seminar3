@@ -1,11 +1,8 @@
-package ProcessSale.tests.se.kth.iv1350.processSale.controller; 
+package se.kth.iv1350.processSale.controller; 
 
 import org.junit.*;
-
-import se.kth.iv1350.processSale.controller.Controller;
 import se.kth.iv1350.processSale.integration.ReceiptPrinter;
 import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
-
 import static org.junit.Assert.assertEquals;
 /**
  * Tests on the methods belonging to the Controller class. Tests on the set/gets methods
@@ -65,7 +62,7 @@ public class ControllerTest {
         controller.startSale();
         controller.entersItemIdentifier("mandariner");
         controller.endSale();
-        float change = controller.enterPayment(100f);
+        float change = controller.entersPayment(100f);
         assertEquals(change, 93.75, 0);
     }
 }

@@ -33,7 +33,8 @@ public class View {
      * 2. Cashier enters the item identifier "mandariner" and the system returns the current sale status.
      * 3. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
      * 4. Cashier ends the sale and the system returns the total price of the sale.
-     * 5. Cashier enters the payment recieved by the customer of 1000 SEK and the system returns the change.
+     * 5. Cashier enters the payment recieved by the customer of 200 SEK and the system returns the change.
+     * 6. Cashier prints the receipt.
      */
     private void systemCalls() {
         this.controller.startSale();
@@ -42,20 +43,46 @@ public class View {
         CurrentSaleStatusDTO currentSaleStatus = this.controller.entersItemIdentifier(identifier);
         this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
         
-        identifier = "mandariner";
-        CurrentSaleStatusDTO currentSaleStatus1 = this.controller.entersItemIdentifier(identifier);
-        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus1);
+        identifier = "mandarin";
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+
+        identifier = "mandarin";
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+
+        identifier = "mandarin";
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
         
         identifier = "mjöl";
-        CurrentSaleStatusDTO currentSaleStatus3 = this.controller.entersItemIdentifier(identifier);
-        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus3);
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+
+        identifier = "honung";
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+
+        identifier = "äpple";
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+
+        identifier = "ananas";
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+
+        identifier = "äpple";
+        currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
         
         float totalPrice = this.controller.endSale();
         this.prettyPrinter.printTotalPrice(totalPrice);
         
-        float payment = 1000f;
+        float payment = 200f;
         float change = this.controller.entersPayment(payment);
         this.prettyPrinter.printChange(change);
+
+        this.controller.printReceipt();
         
     }
 }

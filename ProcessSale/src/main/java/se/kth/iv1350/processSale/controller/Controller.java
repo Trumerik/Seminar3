@@ -70,7 +70,6 @@ public class Controller {
         this.sale.updateReceiptWithPayment(amount);
         Receipt receipt = this.sale.getReceipt();
         updateExternalSystems(receipt);
-        printReceipt(receipt);
         return receipt.getChange();
     }
 
@@ -79,10 +78,12 @@ public class Controller {
         this.accountingSystem.sendSaleInformation(receipt);
     }
 
-    private void printReceipt(Receipt receipt) {
+    /**
+     * Prints the receipt.
+     */
+    public void printReceipt() {
+        Receipt receipt = this.sale.getReceipt();
         this.printer.printReceipt(receipt);
     }
 
 }
-
-

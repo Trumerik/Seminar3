@@ -7,7 +7,7 @@ public class Item {
     private int quantity;
 
     /**
-     * Constructor for Item
+     * Constructor for Item which takes in the name of the item and sets the quantity to 1
      * 
      * @param itemName the name of the item
      */

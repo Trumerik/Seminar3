@@ -2,7 +2,6 @@ package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Receipt;
 import se.kth.iv1350.processSale.util.PrettyPrinter;
-
 /**
  * The external printer machine that will simply print the receipt.
  */
