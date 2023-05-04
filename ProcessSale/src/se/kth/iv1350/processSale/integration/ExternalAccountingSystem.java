@@ -16,7 +16,5 @@ public class ExternalAccountingSystem {
      * 
      * @param receipt the {@link Receipt} to be handled by the accounting system
      */
-    public void sendSaleInformation(Receipt receipt) {
-        
-    }
+    public void sendSaleInformation(Receipt receipt) {}
 }

@@ -14,9 +14,9 @@ public class View {
     private PrettyPrinter prettyPrinter = new PrettyPrinter();
 
     /**
-     * Constructor for the View class.
+     * Constructor for the View class with the specified {@link Controller} class as a parameter.
      * 
-     * @param controller is an instance of the Controller
+     * @param controller is an instance of the Controller.
      */
     public View(Controller controller) {
         this.controller = controller;
@@ -24,24 +24,38 @@ public class View {
     }
 
     /**
-     * This method contains the hardcoded system calls that represent the basic flow, 
-     * and the one alternate flow, described in the seeminar instructions.
+     * This method contains the hardcoded system calls that represent the user interface, 
+     * we showcase basic flow, and the one alternate flow, as described in the task instructions.
+     * We also have printouts directly the System.out when the something is returned by the controller.
+     * 
+     * Here is an explination of the mock user interface system calls:
+     * 1. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
+     * 2. Cashier enters the item identifier "mandariner" and the system returns the current sale status.
+     * 3. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
+     * 4. Cashier ends the sale and the system returns the total price of the sale.
+     * 5. Cashier enters the payment recieved by the customer of 1000 SEK and the system returns the change.
      */
     private void systemCalls() {
-        controller.startSale();
+        this.controller.startSale();
+        
         String identifier = "mjöl";
-        CurrentSaleStatusDTO currentSaleStatus = controller.entersItemIdentifier(identifier);
-        prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+        CurrentSaleStatusDTO currentSaleStatus = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus);
+        
         identifier = "mandariner";
-        CurrentSaleStatusDTO currentSaleStatus1 = controller.entersItemIdentifier(identifier);
-        prettyPrinter.printCurrentSaleInformation(currentSaleStatus1);
+        CurrentSaleStatusDTO currentSaleStatus1 = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus1);
+        
         identifier = "mjöl";
-        CurrentSaleStatusDTO currentSaleStatus3 = controller.entersItemIdentifier(identifier);
-        prettyPrinter.printCurrentSaleInformation(currentSaleStatus3);
-        float totalPrice = controller.endSale();
-        System.out.println("Total price: " + totalPrice);
+        CurrentSaleStatusDTO currentSaleStatus3 = this.controller.entersItemIdentifier(identifier);
+        this.prettyPrinter.printCurrentSaleInformation(currentSaleStatus3);
+        
+        float totalPrice = this.controller.endSale();
+        this.prettyPrinter.printTotalPrice(totalPrice);
+        
         float payment = 1000f;
-        float change = controller.enterPayment(payment);
-        System.out.println("Change: " + change);
+        float change = this.controller.entersPayment(payment);
+        this.prettyPrinter.printChange(change);
+        
     }
 }

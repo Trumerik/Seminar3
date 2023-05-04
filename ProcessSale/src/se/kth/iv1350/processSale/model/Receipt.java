@@ -10,113 +10,108 @@ import java.util.ArrayList;
 public class Receipt {
     private LocalDateTime timeOfSale;
     private float vat;
-    private ArrayList<Integer> quantities;
-    private ArrayList<String> items;
+    private ArrayList<Item> items;
     private float totalPrice;
     private float amountPaid;
     private float change;
     
     /**
-     * Creates a new instance of the receipt and sets the time of sale.
+     * Creates a new instance of the receipt with the specified time of sale as a parameter 
+     * and initializes its fields. 
      * 
-     * @param timeOfSale The time which the sale took place.
+     * @param timeOfSale The time which the sale was initilized.
      */
-    public Receipt(LocalDateTime timeOfSale){
+    Receipt(LocalDateTime timeOfSale){
         this.timeOfSale = timeOfSale;
-        this.quantities = new ArrayList<Integer>();
-        this.items = new ArrayList<String>();
-        vat = 0;
-        totalPrice = 0;
-        amountPaid = 0;
-        change = 0;
+        this.items = new ArrayList<Item>();
+        this.vat = 0;
+        this.totalPrice = 0;
+        this.amountPaid = 0;
+        this.change = 0;
     }
     
     /**
-     * An item description is added to the receipt. If the item have already been added, its 
-     * quantity will increase. Otherwise, the item is added to the receipt with the quantity of 1. 
-     * The running total and vat is lastly updated.
+     * Adds the item and updates the receipts items, quantities, vat and running total.
      * 
-     * @param itemDescription the item to be added to receipt
+     * @param itemDescription The information about the item to be added to receipt
      */
-
-    public void addItemToReceipt(ItemDescriptionDTO itemDescription){
-        for(int i = 0; i < quantities.size(); i++){
-            if (items.get(i) == itemDescription.getName()){
-                quantities.set(i, quantities.get(i) + 1);
+    void addItemToReceipt(ItemDescriptionDTO itemDescription){
+        for(Item item: this.items){
+            if (item.getItemName().equals(itemDescription.getName())){
+                item.incrementQuantity();
                 updateRunningTotalAndVat(itemDescription.getPrice(), itemDescription.getVatRate());
                 return;
             }
         }
-        items.add(itemDescription.getName());
-        quantities.add(1);
+        this.items.add(new Item(itemDescription.getName()));
         updateRunningTotalAndVat(itemDescription.getPrice(), itemDescription.getVatRate());
     }
 
-    /**
-     * updates the running total and vat attributes with added price and vat rate.
-     * 
-     * @param price the price of an item to be added to total price
-     * @param vatRate the vat rate of an item to be added to vat
-     */
     private void updateRunningTotalAndVat(float price, float vatRate) {
         this.totalPrice += price * (1 + vatRate);
         this.vat += price * vatRate;
     }
 
     /**
-     * updates the attributes of amount paid to be the payment. Lastly calculates 
-     * and updates the attribute of change.
+     * Updates the reciept based on the recieved payment.
      * 
      * @param payment the payment of the sale
      */
-    public void updatePayment(float payment){
+    void updateReceiptWithPayment(float payment){
         this.amountPaid = payment;
         float change = payment - totalPrice;
         this.change = change;
     }
 
     /**
-     * @return the change of the current {@link Receipt }
+     * Retrieves the change from the receipt.
+     * 
+     * @return the change of the receipt
      */
     public float getChange(){
         return this.change;
     }
+
     /**
-     * @return the total price of the current {@link Receipt}
+     * Retrieves the total price from the receipt
+     * 
+     * @return the total price of the receipt
      */
-    public float getRunningTotal(){
+    public float getTotalPrice(){
         return this.totalPrice;
-    }
-    /**
-    * @return the time of sale of the current {@link Receipt}
-    */
-    public LocalDateTime getTimeOfSale(){
-        return this.timeOfSale;
     }
     
     /**
-    * @return the quantities of purchased items in of the current {@link Receipt}
-    */
-    public ArrayList<Integer> getQuantities(){
-        return this.quantities;
+     * Retrieves the time of sale from the receipt.
+     * 
+     * @return the time of sale of the receipt
+     */
+    public LocalDateTime getTimeOfSale(){
+        return this.timeOfSale;
     }
 
     /**
-     * @return the items of the current {@link Receipt}
+     * Retrieves the list of items (class {@link Item}) from the receipt.
+     * 
+     * @return the items of the receipt
      */
-    public ArrayList<String> getItems(){
+    public ArrayList<Item> getItems(){
         return this.items;
     }
 
     /**
-     * @return the total price of the current {@link Receipt}
+     * Retreives the total VAT from the receipt
+     * 
+     * @return the total vat of the receipt
      */
     public float getVat(){
         return this.vat;
     }
 
     /**
-     * @return the amount paid of the current {@link Receipt}
+     * Retrieves the amount paid from the receipt. 
+     *
+     * @return the amount paid of the receipt
      */
     public float getAmountPaid(){
         return this.amountPaid;

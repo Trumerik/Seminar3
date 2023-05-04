@@ -1,6 +1,7 @@
 package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Receipt;
+import se.kth.iv1350.processSale.util.PrettyPrinter;
 
 /**
  * The external printer machine that will simply print the receipt.
@@ -19,14 +20,7 @@ public class ReceiptPrinter {
      * @param receipt The {@link Receipt} to be printed.
      */
     public void printReceipt(Receipt receipt) {
-        System.out.println("====RECEIPT======");
-        System.out.println("Paid amount: " + receipt.getAmountPaid());
-        System.out.println("Change: " + receipt.getChange());
-        System.out.println("Total: " + receipt.getRunningTotal());
-        System.out.println("VAT: " + receipt.getVat());
-        System.out.println("Items: " + receipt.getItems());
-        System.out.println("Quantaties: " + receipt.getQuantities());
-        System.out.println("Date & Time: " + receipt.getTimeOfSale());
-        System.out.println("====END OF RECEIPT======");
+        PrettyPrinter prettyPrinter = new PrettyPrinter();
+        prettyPrinter.printReceipt(receipt);
     }
 }

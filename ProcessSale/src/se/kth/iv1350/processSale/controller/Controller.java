@@ -13,24 +13,26 @@ import se.kth.iv1350.processSale.integration.ExternalAccountingSystem;
  */
 public class Controller {
     private ExternalInventorySystem inventorySystem;
-    private ExternalAccountingSystem accountingSystem; 
+    private ExternalAccountingSystem accountingSystem;
     private Sale sale;
     private ReceiptPrinter printer;
 
     /**
-     * Creates a new instance of the controller and initilize the external systems.
+     * Creates a new instance of the controller with the specified {@link Printer} class as a parameter.
+     * Initilize the external systems and initializes the external systems used for inventory and accounting.
      * 
-     * @param printer The printer that will print the receipt.
+     * @param printer the printer print the receipt.
      */
     public Controller(ReceiptPrinter printer) {
         this.printer = printer;
         this.inventorySystem = new ExternalInventorySystem();
         this.accountingSystem = new ExternalAccountingSystem();
+        this.sale = null;
     }
 
     /**
-     * Starts a new sale by creating a new instance of the {@link Sale} class.
-     * The sale object is initilized with the inventorySystem.
+     * Starts a new sale by creating a new instance of the {@link Sale} class with the
+     * controllers {@link ExternalInventorySystem} field inventorySystem.
      */
     public void startSale() {
         this.sale = new Sale(inventorySystem);
@@ -38,13 +40,13 @@ public class Controller {
     
     /**
      * Enters an item identifier into the system and returns the current
-     * status of the sale.
+     * status of the sale after the new item has been processed.
      * 
      * @param identifier The identifier of the item.
-     * @return The current sale status.
+     * @return The current sale status as a {@link CurrentSaleStatusDTO}.
      */
     public CurrentSaleStatusDTO entersItemIdentifier(String identifier) {
-        return sale.requestSaleInformation(identifier);
+        return this.sale.requestSaleInformation(identifier);
     }
 
     /**
@@ -53,26 +55,34 @@ public class Controller {
      * @return The total price of the sale.
      */
     public float endSale() {
-        Receipt receipt = sale.getReceipt();
-        return receipt.getRunningTotal();
+        Receipt receipt = this.sale.getReceipt();
+        return receipt.getTotalPrice();
     }
 
     /**
-     * Enters the payment amount and returns the change. Also updates the
-     * inventory system and sends the sale information to the accounting system
-     * as well as prints the receipt.
+     * Enters the payment amount and returns the change. Also updates the reciept and
+     * external systems as well as prints the receipt.
      * 
      * @param amount The amount of money the customer paid.
      * @return The change.
      */
-    public float enterPayment(float amount) {
-        sale.updateReceipt(amount);
-        Receipt receipt = sale.getReceipt();
-        this.inventorySystem.updateInventorySystem(receipt);
-        this.accountingSystem.sendSaleInformation(receipt);
-        printer.printReceipt(receipt);
+    public float entersPayment(float amount) {
+        this.sale.updateReceiptWithPayment(amount);
+        Receipt receipt = this.sale.getReceipt();
+        updateExternalSystems(receipt);
+        printReceipt(receipt);
         return receipt.getChange();
     }
+
+    private void updateExternalSystems(Receipt receipt){
+        this.inventorySystem.updateInventorySystem(receipt);
+        this.accountingSystem.sendSaleInformation(receipt);
+    }
+
+    private void printReceipt(Receipt receipt) {
+        this.printer.printReceipt(receipt);
+    }
+
 }
 
 
