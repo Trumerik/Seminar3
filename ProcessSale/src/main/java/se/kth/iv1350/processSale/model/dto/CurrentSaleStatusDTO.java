@@ -19,7 +19,6 @@ public class CurrentSaleStatusDTO {
         this.runningTotal = runningTotal;
     }
 
-
     /**
      * getter method for the running total
      * @return the running total

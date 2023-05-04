@@ -1,4 +1,5 @@
 package se.kth.iv1350.processSale.model;
+
 /**
  * Item class represent the name of the item and its quantitiy to be presented in the receipt
  */
@@ -15,6 +16,7 @@ public class Item {
         this.itemName = itemName;
         this.quantity = 1;
     }
+    
     /**
      * Retrieves the items name
      * 

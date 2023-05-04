@@ -29,12 +29,18 @@ public class View {
      * We also have printouts directly the System.out when the something is returned by the controller.
      * 
      * Here is an explination of the mock user interface system calls:
-     * 1. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
-     * 2. Cashier enters the item identifier "mandariner" and the system returns the current sale status.
-     * 3. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
-     * 4. Cashier ends the sale and the system returns the total price of the sale.
-     * 5. Cashier enters the payment recieved by the customer of 200 SEK and the system returns the change.
-     * 6. Cashier prints the receipt.
+     * 1. Cashier starts the sale.
+     * 2. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
+     * 3. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
+     * 4. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
+     * 5. Cashier enters the item identifier "mandarin" and the system returns the current sale status.
+     * 6. Cashier enters the item identifier "mjöl" and the system returns the current sale status.
+     * 7. Cashier enters the item identifier "honung" and the system returns the current sale status.
+     * 8. Cashier enters the item identifier "äpple" and the system returns the current sale status.
+     * 9. Cashier enters the item identifier "ananas" and the system returns the current sale status.
+     * 10. Cashier enters the item identifier "äpple" and the system returns the current sale status.
+     * 11. Cashier ends the sale.
+     * 12. Cashier enters the amount paid by the customer and finally the receipt is printed.
      */
     private void systemCalls() {
         this.controller.startSale();
@@ -83,6 +89,5 @@ public class View {
         this.prettyPrinter.printChange(change);
 
         this.controller.printReceipt();
-        
     }
 }

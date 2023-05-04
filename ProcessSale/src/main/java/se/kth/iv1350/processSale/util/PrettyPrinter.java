@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import se.kth.iv1350.processSale.model.Item;
 import se.kth.iv1350.processSale.model.Receipt;
 import se.kth.iv1350.processSale.model.dto.CurrentSaleStatusDTO;
+
 /**
  * The class PrettyPrinter prints out information from a sample run made in {link View}.
  */
@@ -22,10 +23,10 @@ public class PrettyPrinter {
      */
     public void printCurrentSaleInformation(CurrentSaleStatusDTO info){   
         System.out.println("- Returned by the controller: Current sale status -"); 
-        System.out.println("Running total: " + info.getRunningTotal());
         System.out.println("Name: " + info.getItemDescription().getName());
         System.out.println("Price: " + info.getItemDescription().getPrice());
-        System.out.println("VAT-rate: " + info.getItemDescription().getVatRate() + "\n");
+        System.out.println("VAT-rate: " + info.getItemDescription().getVatRate());
+        System.out.println("Running total: " + info.getRunningTotal() + "\n");
     }
     
     /**

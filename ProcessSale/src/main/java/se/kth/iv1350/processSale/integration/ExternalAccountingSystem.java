@@ -1,11 +1,13 @@
 package se.kth.iv1350.processSale.integration;
 
 import se.kth.iv1350.processSale.model.Receipt;
+
 /**
  * The external accounting system contains accounting information. Calls are only made 
  * to the class from the controller
  */
 public class ExternalAccountingSystem {
+    
     /**
      * Creates a new instance of the external accounting system.
      */
